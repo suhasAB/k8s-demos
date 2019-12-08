@@ -1,0 +1,45 @@
+---
+# secret
+apiVersion: v1
+kind: Secret
+metadata:
+  name: mysql-secret
+  namespace: development
+  labels:
+    app: mysql
+data:
+  password: c29tZS1zZWNyZXQtcGFzc3dvcmQ=
+---
+# persistent volume
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: mysql-pv
+  namespace: development
+  labels:
+    app: mysql
+spec:
+  storageClassName: local
+  capacity:
+    storage: 8Gi
+  accessModes:
+  - ReadWriteOnce
+  hostPath:
+    path: /mnt/data
+---
+# persistent volume claim
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: mysql-pvc
+  namespace: development
+  labels:
+    app: mysql
+spec:
+  storageClassName: local
+  accessModes:
+  - ReadWriteOnce
+  resources:
+    requests:
+      storage: 8Gi
+
