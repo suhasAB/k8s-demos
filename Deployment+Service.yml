@@ -1,4 +1,4 @@
---
+---
 apiVersion: apps/v1 # Note the changes from Pod file
 kind: Deployment # Note the change
 metadata:
